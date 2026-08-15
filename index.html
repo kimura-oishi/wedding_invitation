@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YUKI &amp; AYAKA — Wedding Invitation</title>
+<meta name="description" content="木村勇輝・大石彩加 結婚式のご案内">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F2ED;
+    --panel:#EAE6DF;
+    --ink:#3B3630;
+    --muted:#847C70;
+    --accent:#A18B5F;
+    --line:#D8D2C7;
+    --white:#FCFBF8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Shippori Mincho',serif;
+    font-size:15px;
+    line-height:2;
+    letter-spacing:.06em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .en{font-family:'Cormorant Garamond',serif;}
+  .label{
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-weight:400;
+    font-size:11px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--accent);
+    text-indent:.42em;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- section divider ---------- */
+  .divider{
+    display:flex;align-items:center;justify-content:center;
+    gap:14px;padding:72px 0 0;
+  }
+  .divider::before,.divider::after{
+    content:"";display:block;width:56px;height:1px;background:var(--line);
+  }
+  .divider span{
+    width:5px;height:5px;background:var(--accent);
+    transform:rotate(45deg);display:block;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;
+    padding:64px 24px;
+    position:relative;
+  }
+  .hero .label{margin-bottom:40px;}
+  .frame{
+    position:relative;
+    border:1px solid var(--accent);
+    padding:72px 28px;
+    width:min(80vw,360px);
+    display:flex;flex-direction:column;align-items:center;gap:0;
+    background:linear-gradient(180deg,rgba(252,251,248,.6),rgba(252,251,248,.15));
+  }
+  .frame::before{
+    content:"";position:absolute;inset:7px;
+    border:1px solid var(--line);
+    pointer-events:none;
+  }
+  .frame .corner{
+    position:absolute;width:5px;height:5px;
+    background:var(--accent);transform:rotate(45deg);
+  }
+  .frame .c1{top:-3px;left:-3px;}
+  .frame .c2{top:-3px;right:-3px;}
+  .frame .c3{bottom:-3px;left:-3px;}
+  .frame .c4{bottom:-3px;right:-3px;}
+  .hero-name{
+    font-size:clamp(38px,11vw,52px);
+    font-weight:300;
+    letter-spacing:.14em;
+    line-height:1.25;
+    color:var(--ink);
+  }
+  .hero-amp{
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(22px,6vw,28px);
+    color:var(--accent);
+    margin:10px 0;
+  }
+  .hero-date{
+    margin-top:44px;
+    font-size:13px;
+    letter-spacing:.34em;
+    text-indent:.34em;
+    color:var(--muted);
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-weight:300;
+  }
+  .hero-venue{
+    margin-top:8px;
+    font-size:12px;
+    letter-spacing:.22em;
+    text-indent:.22em;
+    color:var(--muted);
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-weight:300;
+  }
+  .scroll-cue{
+    position:absolute;bottom:28px;left:50%;
+    width:1px;height:52px;background:var(--line);
+    overflow:hidden;
+  }
+  .scroll-cue::after{
+    content:"";position:absolute;top:-100%;left:0;
+    width:1px;height:100%;background:var(--accent);
+    animation:cue 2.4s ease-in-out infinite;
+  }
+  @keyframes cue{0%{top:-100%}55%{top:100%}100%{top:100%}}
+
+  /* ---------- sections ---------- */
+  section{padding:64px 0 8px;}
+  .sec-head{text-align:center;margin-bottom:40px;}
+  .sec-head .en-title{
+    font-size:30px;font-weight:300;letter-spacing:.2em;text-indent:.2em;
+    color:var(--ink);
+  }
+  .sec-head .jp-title{
+    display:block;margin-top:6px;
+    font-size:12px;color:var(--muted);letter-spacing:.3em;text-indent:.3em;
+  }
+
+  .message-body{text-align:center;font-size:14px;}
+  .message-body p+p{margin-top:1.6em;}
+  .signature{
+    margin-top:44px;text-align:center;
+    font-size:15px;letter-spacing:.18em;
+  }
+  .signature .en{font-size:13px;color:var(--muted);letter-spacing:.24em;display:block;margin-top:4px;}
+
+  /* ---------- info cards ---------- */
+  .info-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:40px 28px;
+    text-align:center;
+  }
+  .info-card+.info-card{margin-top:20px;}
+  .info-card .label{display:block;margin-bottom:16px;}
+  .info-time{
+    font-size:26px;font-weight:300;letter-spacing:.12em;
+  }
+  .info-note{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.9;}
+  .info-date-line{
+    font-size:15px;letter-spacing:.14em;margin-bottom:26px;
+    padding-bottom:22px;border-bottom:1px solid var(--line);
+  }
+  .info-date-line .en{font-size:22px;display:block;letter-spacing:.2em;margin-bottom:4px;}
+
+  .time-row{display:flex;justify-content:center;gap:0;}
+  .time-cell{flex:1;padding:6px 8px;}
+  .time-cell+.time-cell{border-left:1px solid var(--line);}
+  .time-cell .label{margin-bottom:10px;}
+
+  /* ---------- access ---------- */
+  .venue-name{
+    text-align:center;font-size:20px;font-weight:300;
+    letter-spacing:.16em;margin-bottom:6px;
+  }
+  .venue-addr{text-align:center;font-size:13px;color:var(--muted);line-height:1.9;}
+  .map-btn{
+    display:block;width:fit-content;margin:26px auto 0;
+    padding:13px 44px;
+    border:1px solid var(--ink);
+    color:var(--ink);text-decoration:none;
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-size:12px;letter-spacing:.3em;text-indent:.3em;
+    transition:background .3s,color .3s;
+  }
+  .map-btn:hover{background:var(--ink);color:var(--bg);}
+  .access-list{margin-top:36px;border-top:1px solid var(--line);}
+  .access-item{
+    display:flex;gap:18px;align-items:baseline;
+    padding:16px 4px;border-bottom:1px solid var(--line);
+    font-size:13px;
+  }
+  .access-item .st{min-width:9em;letter-spacing:.08em;}
+  .access-item .way{color:var(--muted);}
+  .access-note{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.9;}
+
+  /* ---------- dress / notes ---------- */
+  .note-block{
+    background:var(--panel);
+    padding:36px 28px;
+  }
+  .note-block+.note-block{margin-top:16px;}
+  .note-block h3{
+    font-size:13px;font-weight:500;letter-spacing:.26em;text-indent:.26em;
+    text-align:center;margin-bottom:18px;color:var(--ink);
+  }
+  .note-block p{font-size:13px;line-height:2.1;text-align:center;color:#5A544B;}
+
+  .qr{width:140px;height:140px;border:1px solid var(--line);padding:8px;background:var(--white);}
+  .allergy-link{
+    display:block;width:fit-content;margin:20px auto 0;
+    padding:12px 36px;
+    border:1px solid var(--ink);color:var(--ink);text-decoration:none;
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-size:12px;letter-spacing:.22em;text-indent:.22em;
+    transition:background .3s,color .3s;
+  }
+  .allergy-link:hover{background:var(--ink);color:var(--bg);}
+
+  /* ---------- rsvp ---------- */
+  .rsvp-lead{text-align:center;font-size:13.5px;margin-bottom:8px;}
+  .rsvp-deadline{
+    text-align:center;font-size:13px;color:var(--accent);
+    letter-spacing:.14em;margin-bottom:40px;
+  }
+  form{background:var(--white);border:1px solid var(--line);padding:44px 28px;}
+  .field{margin-bottom:30px;}
+  .field-label{
+    display:block;
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-size:11.5px;font-weight:500;letter-spacing:.2em;
+    color:var(--ink);margin-bottom:10px;
+  }
+  .field-label .req{color:var(--accent);font-size:10px;margin-left:8px;letter-spacing:.1em;}
+  .name-row{display:flex;gap:18px;}
+  .name-col{flex:1;}
+  .name-sub{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;color:var(--muted);letter-spacing:.14em;margin-bottom:6px;}
+  .name-note{font-size:11px;color:var(--muted);margin-top:10px;letter-spacing:.06em;}
+  input[type=text],input[type=email],textarea{
+    width:100%;
+    border:none;border-bottom:1px solid var(--line);
+    background:transparent;
+    padding:8px 2px;
+    font-family:'Shippori Mincho',serif;
+    font-size:15px;color:var(--ink);
+    letter-spacing:.06em;
+    border-radius:0;
+    transition:border-color .3s;
+  }
+  input:focus,textarea:focus{outline:none;border-bottom-color:var(--accent);}
+  textarea{resize:vertical;min-height:88px;line-height:1.9;}
+  .attend-row{display:flex;gap:14px;}
+  .attend-opt{flex:1;position:relative;}
+  .attend-opt input{position:absolute;opacity:0;inset:0;cursor:pointer;}
+  .attend-opt span{
+    display:block;text-align:center;
+    padding:16px 0;
+    border:1px solid var(--line);
+    font-size:14px;letter-spacing:.24em;text-indent:.24em;
+    color:var(--muted);
+    transition:all .3s;
+  }
+  .attend-opt input:checked+span{
+    border-color:var(--ink);background:var(--ink);color:var(--bg);
+  }
+  .attend-opt input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px;}
+  .submit-btn{
+    display:block;width:100%;
+    margin-top:12px;
+    padding:17px 0;
+    background:var(--ink);color:var(--bg);
+    border:1px solid var(--ink);
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-size:13px;letter-spacing:.34em;text-indent:.34em;
+    cursor:pointer;
+    transition:opacity .3s;
+  }
+  .submit-btn:hover{opacity:.85;}
+  .submit-btn:disabled{opacity:.5;cursor:default;}
+  .form-done{
+    display:none;text-align:center;padding:64px 20px;
+    background:var(--white);border:1px solid var(--line);
+  }
+  .form-done .en-title{font-size:26px;letter-spacing:.2em;font-weight:300;}
+  .form-done p{margin-top:18px;font-size:13.5px;color:var(--muted);}
+
+  /* ---------- footer ---------- */
+  footer{
+    margin-top:88px;
+    padding:56px 24px 64px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+  footer .en{font-size:16px;letter-spacing:.28em;color:var(--muted);}
+  footer .contact{font-size:12px;color:var(--muted);margin-top:14px;line-height:2;}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease;}
+  .reveal.on{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .scroll-cue::after{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero">
+  <p class="label">Wedding Invitation</p>
+  <div class="frame">
+    <span class="corner c1" aria-hidden="true"></span>
+    <span class="corner c2" aria-hidden="true"></span>
+    <span class="corner c3" aria-hidden="true"></span>
+    <span class="corner c4" aria-hidden="true"></span>
+    <p class="hero-name en">YUKI</p>
+    <p class="hero-amp en">&amp;</p>
+    <p class="hero-name en">AYAKA</p>
+  </div>
+  <p class="hero-date">2026.10.31 SAT</p>
+  <p class="hero-venue">TRUNK(HOTEL)</p>
+  <div class="scroll-cue" aria-hidden="true"></div>
+</header>
+
+<!-- ======================= MESSAGE ======================= -->
+<div class="divider" aria-hidden="true"><span></span></div>
+<section id="message">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <p class="en en-title">Greeting</p>
+      <span class="jp-title">ご挨拶</span>
+    </div>
+    <div class="message-body">
+      <p>謹啓 盛夏の候 皆様にはますます<br>
+      ご清祥のこととお慶び申し上げます</p>
+      <p>さて このたび 私どもの婚約が整い<br>
+      結婚式を挙げることになりました</p>
+      <p>つきましては 幾久しくご懇情を賜りたく<br>
+      披露かたがた小宴をもうけますので<br>
+      誠に恐縮ではございますが<br>
+      なにとぞご光臨の栄を賜りますよう<br>
+      ご案内申し上げます</p>
+      <p style="text-align:right;margin-top:.6em;">謹白</p>
+    </div>
+    <div class="signature">
+      <p style="font-size:13px;color:var(--muted);letter-spacing:.14em;">2026年8月吉日</p>
+      <p style="margin-top:22px;">木村 勇輝</p>
+      <p style="margin-top:10px;">大石 彩加</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= INFORMATION ======================= -->
+<div class="divider" aria-hidden="true"><span></span></div>
+<section id="information">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <p class="en en-title">Information</p>
+      <span class="jp-title">挙式・披露宴のご案内</span>
+    </div>
+    <div class="info-card">
+      <p class="info-date-line">
+        <span class="en">October 31, 2026</span>
+        2026年10月31日(土曜日)
+      </p>
+      <div class="time-row">
+        <div class="time-cell">
+          <span class="label">Ceremony</span>
+          <p class="info-time en">15:30</p>
+          <p class="info-note">挙式</p>
+        </div>
+        <div class="time-cell">
+          <span class="label">Reception</span>
+          <p class="info-time en">15:50</p>
+          <p class="info-note">受付</p>
+        </div>
+        <div class="time-cell">
+          <span class="label">Banquet</span>
+          <p class="info-time en">16:15</p>
+          <p class="info-note">披露宴</p>
+        </div>
+      </div>
+      <p class="info-note" style="margin-top:26px;">
+        誠に恐れ入りますが<br>
+        当日 挙式にもご列席賜りたく<br>
+        15:15までにお越しくださいますよう<br>
+        お願い申し上げます
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ACCESS ======================= -->
+<div class="divider" aria-hidden="true"><span></span></div>
+<section id="access">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <p class="en en-title">Access</p>
+      <span class="jp-title">会場のご案内</span>
+    </div>
+    <p class="venue-name en">TRUNK(HOTEL)</p>
+    <p class="venue-addr">
+      3F SORANIWA<br>
+      〒150-0001<br>
+      東京都渋谷区神宮前5-31<br>
+      TEL 03-5766-3200
+    </p>
+    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=TRUNK%28HOTEL%29+CAT+STREET+%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E7%A5%9E%E5%AE%AE%E5%89%8D5-31" target="_blank" rel="noopener">Google Map</a>
+    <div class="access-list">
+      <div class="access-item">
+        <span class="st">渋谷駅(B1出口)</span>
+        <span class="way">徒歩約5分</span>
+      </div>
+      <div class="access-item">
+        <span class="st">明治神宮前駅(7番出口)</span>
+        <span class="way">徒歩約7分</span>
+      </div>
+      <div class="access-item">
+        <span class="st">表参道駅(B2出口)</span>
+        <span class="way">徒歩約12分</span>
+      </div>
+    </div>
+    <p class="access-note">
+      ※なお 当会場には駐車場のご用意がございませんので<br>
+      お車でのご来館はご遠慮いただきますようお願い申し上げます
+    </p>
+  </div>
+</section>
+
+<!-- ======================= MEAL / アレルギー付箋 ======================= -->
+<div class="divider" aria-hidden="true"><span></span></div>
+<section id="meal">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <p class="en en-title">Meal</p>
+      <span class="jp-title">お食事に関するお願い</span>
+    </div>
+    <div class="note-block" style="text-align:center;">
+      <p>
+        食物アレルギーや食事制限のある方は<br>
+        下記フォームよりご回答をお願いいたします
+      </p>
+      <a class="allergy-link" href="https://caneat.jp/45/event/e92ccfa0" target="_blank" rel="noopener">アレルギー回答フォームへ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= RSVP ======================= -->
+<div class="divider" aria-hidden="true"><span></span></div>
+<section id="rsvp">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <p class="en en-title">Reply</p>
+      <span class="jp-title">ご出欠のお返事</span>
+    </div>
+    <p class="rsvp-lead">
+      誠にお手数ながら ご都合の程を<br>
+      下記フォームよりご一報くださいますよう<br>
+      お願い申し上げます
+    </p>
+    <p class="rsvp-deadline">回答期限：2026年9月14日(月曜日)</p>
+
+    <form id="rsvpForm" novalidate>
+      <div class="field">
+        <span class="field-label">ご出欠<span class="req">必須</span></span>
+        <div class="attend-row">
+          <label class="attend-opt">
+            <input type="radio" name="attendance" value="ご出席" required>
+            <span>ご出席</span>
+          </label>
+          <label class="attend-opt">
+            <input type="radio" name="attendance" value="ご欠席">
+            <span>ご欠席</span>
+          </label>
+        </div>
+      </div>
+      <div class="field">
+        <span class="field-label">お名前<span class="req">必須</span></span>
+        <div class="name-row">
+          <div class="name-col">
+            <label class="name-sub" for="f-lastname">姓</label>
+            <input type="text" id="f-lastname" name="lastName" autocomplete="family-name" required>
+          </div>
+          <div class="name-col">
+            <label class="name-sub" for="f-firstname">名</label>
+            <input type="text" id="f-firstname" name="firstName" autocomplete="given-name" required>
+          </div>
+        </div>
+        <p class="name-note">※漢字でご記入ください</p>
+      </div>
+      <div class="field">
+        <label class="field-label" for="f-message">メッセージ</label>
+        <textarea id="f-message" name="message"></textarea>
+      </div>
+      <button type="submit" class="submit-btn">送信する</button>
+    </form>
+
+    <div class="form-done" id="formDone">
+      <p class="en en-title">Thank You</p>
+      <p>ご回答ありがとうございました<br>
+      当日お会いできるのを楽しみにしております</p>
+    </div>
+  </div>
+</section>
+
+<script>
+/* =========================================================
+   ▼▼▼ 回答フォームの送信先設定(公開前に必ず設定してください) ▼▼▼
+   Google フォームを1つ作成し、以下2点を書き換えると
+   このページのフォームから直接回答を収集できます。
+
+   1. GOOGLE_FORM_ACTION：
+      Googleフォームの「formResponse」URL
+      例)https://docs.google.com/forms/d/e/XXXXXXXX/formResponse
+   2. ENTRY_IDS：
+      各質問のentry ID(フォームの「事前入力したURLを取得」で確認できます)
+
+   未設定のままでも見た目の確認はできますが、
+   回答は送信されません(送信時にエラー表示になります)。
+========================================================= */
+const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdmLh5sCR2Cadaz1emJjypxiaqz_hYyVbOl6MJtcFafoH7lDA/formResponse";
+const ENTRY_IDS = {
+  attendance: "entry.1574063471",
+  lastName:   "entry.788562150",
+  firstName:  "entry.721356575",
+  message:    "entry.439255281"
+};
+
+const form = document.getElementById("rsvpForm");
+const done = document.getElementById("formDone");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!form.reportValidity()) return;
+
+  if (!GOOGLE_FORM_ACTION) {
+    alert("送信先が設定されていません。恐れ入りますが新郎新婦までご連絡ください。");
+    return;
+  }
+
+  const btn = form.querySelector(".submit-btn");
+  btn.disabled = true;
+  btn.textContent = "送信中…";
+
+  const fd = new FormData(form);
+  const body = new URLSearchParams();
+  for (const [key, entry] of Object.entries(ENTRY_IDS)) {
+    body.append(entry, fd.get(key) || "");
+  }
+
+  try {
+    await fetch(GOOGLE_FORM_ACTION, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body
+    });
+    form.style.display = "none";
+    done.style.display = "block";
+    done.scrollIntoView({ behavior: "smooth", block: "center" });
+  } catch (err) {
+    alert("送信に失敗しました。お手数ですが時間をおいて再度お試しください。");
+    btn.disabled = false;
+    btn.textContent = "送信する";
+  }
+});
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((en) => {
+    if (en.isIntersecting) {
+      en.target.classList.add("on");
+      io.unobserve(en.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+</script>
+</body>
+</html>

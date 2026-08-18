@@ -241,6 +241,29 @@
   .name-col{flex:1;}
   .name-sub{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;color:var(--muted);letter-spacing:.14em;margin-bottom:6px;}
   .name-note{font-size:11px;color:var(--muted);margin-top:10px;letter-spacing:.06em;}
+  .companion-item{position:relative;padding:18px 0 4px;border-top:1px solid var(--line);margin-top:14px;}
+  .companion-item:first-child{border-top:none;margin-top:0;padding-top:6px;}
+  .companion-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+  .companion-label{font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;color:var(--muted);letter-spacing:.14em;}
+  .companion-remove{
+    background:none;border:none;cursor:pointer;
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-size:11px;color:var(--accent);letter-spacing:.08em;padding:2px 4px;
+  }
+  .companion-remove:hover{text-decoration:underline;}
+  .add-companion{
+    display:block;width:100%;
+    padding:13px 0;margin-top:6px;
+    background:transparent;
+    border:1px dashed var(--line);
+    color:var(--muted);
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-size:12px;letter-spacing:.18em;text-indent:.18em;
+    cursor:pointer;
+    transition:border-color .3s,color .3s;
+  }
+  .add-companion:hover{border-color:var(--accent);color:var(--accent);}
+  .add-companion:disabled{opacity:.4;cursor:default;border-style:solid;}
   input[type=text],input[type=email],textarea{
     width:100%;
     border:none;border-bottom:1px solid var(--line);
@@ -447,6 +470,13 @@
         下記フォームよりご回答をお願いいたします
       </p>
       <a class="allergy-link" href="https://caneat.jp/45/event/e92ccfa0" target="_blank" rel="noopener">アレルギー回答フォームへ</a>
+      <p style="margin-top:24px;font-size:12.5px;line-height:2;color:var(--muted);">
+        なお ご回答はおひとり様につき<br>
+        1件のご登録をお願いいたします<br>
+        お連れ様にもお食事制限がある場合は<br>
+        恐れ入りますが お連れ様の分もあわせて<br>
+        代理でご登録いただきますようお願いいたします
+      </p>
     </div>
   </div>
 </section>
@@ -495,6 +525,12 @@
         <p class="name-note">※漢字でご記入ください</p>
       </div>
       <div class="field">
+        <span class="field-label">お連れ様</span>
+        <div id="companions"></div>
+        <button type="button" id="addCompanion" class="add-companion">＋ お連れ様を追加</button>
+        <p class="name-note">※お連れ様がいらっしゃる場合はご追加ください</p>
+      </div>
+      <div class="field">
         <label class="field-label" for="f-message">メッセージ</label>
         <textarea id="f-message" name="message"></textarea>
       </div>
@@ -531,9 +567,64 @@ const ENTRY_IDS = {
   firstName:  "entry.721356575",
   message:    "entry.439255281"
 };
+const COMPANION_ENTRY = "entry.1603751448";
+const MAX_COMPANIONS = 6;
 
 const form = document.getElementById("rsvpForm");
 const done = document.getElementById("formDone");
+
+/* ---------- お連れ様欄の追加・削除 ---------- */
+const companionsWrap = document.getElementById("companions");
+const addBtn = document.getElementById("addCompanion");
+
+function renumber() {
+  const items = companionsWrap.querySelectorAll(".companion-item");
+  items.forEach((el, i) => {
+    el.querySelector(".companion-label").textContent = "お連れ様 " + (i + 1);
+  });
+  addBtn.disabled = items.length >= MAX_COMPANIONS;
+}
+
+function addCompanion() {
+  const items = companionsWrap.querySelectorAll(".companion-item");
+  if (items.length >= MAX_COMPANIONS) return;
+  const div = document.createElement("div");
+  div.className = "companion-item";
+  div.innerHTML =
+    '<div class="companion-head">' +
+      '<span class="companion-label"></span>' +
+      '<button type="button" class="companion-remove">削除</button>' +
+    '</div>' +
+    '<div class="name-row">' +
+      '<div class="name-col">' +
+        '<label class="name-sub">姓</label>' +
+        '<input type="text" class="comp-last" autocomplete="off">' +
+      '</div>' +
+      '<div class="name-col">' +
+        '<label class="name-sub">名</label>' +
+        '<input type="text" class="comp-first" autocomplete="off">' +
+      '</div>' +
+    '</div>';
+  div.querySelector(".companion-remove").addEventListener("click", () => {
+    div.remove();
+    renumber();
+  });
+  companionsWrap.appendChild(div);
+  renumber();
+}
+addBtn.addEventListener("click", addCompanion);
+
+function collectCompanions() {
+  const items = companionsWrap.querySelectorAll(".companion-item");
+  const names = [];
+  items.forEach((el) => {
+    const last = el.querySelector(".comp-last").value.trim();
+    const first = el.querySelector(".comp-first").value.trim();
+    const full = (last + " " + first).trim();
+    if (full) names.push(full);
+  });
+  return names.join("\n");
+}
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -553,6 +644,7 @@ form.addEventListener("submit", async (e) => {
   for (const [key, entry] of Object.entries(ENTRY_IDS)) {
     body.append(entry, fd.get(key) || "");
   }
+  body.append(COMPANION_ENTRY, collectCompanions());
 
   try {
     await fetch(GOOGLE_FORM_ACTION, {
